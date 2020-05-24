@@ -1,71 +1,95 @@
 //hold for js code
-const _BASEURL = "http://localhost:3000/api/v1/recipes"
+const recipesUrl = "http://localhost:3000/api/v1/recipes"
+const dietsUrl = 'http://localhost:3000/api/v1/diets'
+const recipeDietsUrl = ''
 const cardContainer = document.querySelector(".container")
-import anime from 'animejs';
-
+const select = document.querySelector('#diet-names')
+// import anime from 'animejs';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-const fetchRecipes = () => {
-        fetch(_BASEURL)
+  const fetchRecipes = () => {
+      fetch(recipesUrl)
         .then(resp => resp.json())
         .then(populateRecipeCards)
-    }
-   
-    //fetchRecipes()
+  }
 
-const populateRecipeCards = (recipes) => {
-recipes.forEach(recipe =>{
+const populateRecipeCards = recipes => {
+  recipes.forEach(recipe => {
     
-    //create cards for food pics
+    //create cards for each recipe
     const recipeDiv = document.createElement('div')
     recipeDiv.className = "card"
     cardContainer.appendChild(recipeDiv)
+
     const frontCard = document.createElement('div')
     frontCard.className = "front"
     recipeDiv.appendChild(frontCard)
+
     const backCard = document.createElement('div')
     backCard.className = "back"
     recipeDiv.appendChild(backCard)
+
     frontCard.innerHTML = `
-    <img src= ${recipe.image_url}>`
+      <img src= ${recipe.image_url}>`
+      
     backCard.innerHTML = `
-    ${recipe.ingredients}
-    `
+      ${recipe.ingredients}
+      `
 
 
     //card anime js
-    const card = document.querySelector(".card");
-    let playing = false;
+    // const card = document.querySelector(".card");
+    // let playing = false;
 
-    card.addEventListener('click',function() {
-    if(playing)
-    return;
+    // card.addEventListener('click',function() {
+    //   if(playing)
+    //   return;
   
-  playing = true;
-  anime({
-    targets: card,
-    scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
-    rotateY: {value: '+=180', delay: 200},
-    easing: 'easeInOutSine',
-    duration: 400,
-    complete: function(anim){
-       playing = false;
-    }
-  });
-});
-///end card anime js
+    //     playing = true;
+    //     anime({
+    //       targets: card,
+    //       scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
+    //       rotateY: {value: '+=180', delay: 200},
+    //       easing: 'easeInOutSine',
+    //       duration: 400,
+    //       complete: function(anim){
+    //         playing = false;
+    //       }
+    //     });
+    // });
+    ///end card anime js
 
-})
-
+  })  
+}
+ 
+//create select option for each diet
+const fetchDiets = () => {
+  fetch(dietsUrl)
+    .then(resp => resp.json())
+    .then(renderDietsDropdown)
 }
 
-//
+const renderDietsDropdown = diets => {
+  
 
-// end of card js
+  diets.forEach(diet => {
+    const newOption = document.createElement('option')
+    newOption.textContent = diet.name
+    select.add(newOption)
 
-    
+    //add event listener for selections in dropdown menu
+    select.addEventListener('change', (e) => {
+      if(e.target.value === diet.name) {
+        console.log(e.target.value)
+      }
+    })
+  })
+}
+
+
 
 fetchRecipes()
+fetchDiets()
 
- })
+})

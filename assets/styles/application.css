@@ -1,6 +1,6 @@
 /* hold for css styling */
 /*card styling*/
-.body
+body
 {
     background: #cfd8dc;
 }
@@ -64,3 +64,17 @@
     color: #c1abad;
     background: #fff;
 }
+
+.dropdown {
+    background-color: rgb(49, 109, 179);
+    color: white;
+    padding: 1%;
+    padding-top: 0px;
+    border: none;
+    text-align: center;
+  }
+  
+  .dropdown>select, input {
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
