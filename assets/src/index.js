@@ -1,9 +1,10 @@
 //hold for js code
 const recipesUrl = "http://localhost:3000/api/v1/recipes"
 const dietsUrl = 'http://localhost:3000/api/v1/diets'
-const recipeDietsUrl = ''
+const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
 const cardContainer = document.querySelector(".container")
 const select = document.querySelector('#diet-names')
+const recipeDiv = document.createElement('div')
 // import anime from 'animejs';
 
 
@@ -18,7 +19,6 @@ const populateRecipeCards = recipes => {
   recipes.forEach(recipe => {
     
     //create cards for each recipe
-    const recipeDiv = document.createElement('div')
     recipeDiv.className = "card"
     cardContainer.appendChild(recipeDiv)
 
@@ -72,7 +72,6 @@ const fetchDiets = () => {
 
 const renderDietsDropdown = diets => {
   
-
   diets.forEach(diet => {
     const newOption = document.createElement('option')
     newOption.textContent = diet.name
@@ -80,9 +79,29 @@ const renderDietsDropdown = diets => {
 
     //add event listener for selections in dropdown menu
     select.addEventListener('change', (e) => {
-      if(e.target.value === diet.name) {
-        console.log(e.target.value)
+      const fetchRecipeDiets = () => {
+        fetch(recipedietsUrl)
+          .then(resp => resp.json())
+          .then(clickedRecipeDiets)
       }
+      const clickedRecipeDiets = recipeDiets => {
+        if (e.target.value === diet.name) {
+          recipeDiets.forEach(recipeDiet => {
+            console.log(recipeDiet.diet.filter)
+          })
+          
+        //   recipeDiets.forEach(recipeDiet => {
+        //   })
+          //show recipes with target diet
+        // console.log(recipeDiets.e.target.value)
+
+
+        // recipeDiv.innerHTML = `${diet.name}`
+
+
+      }
+      }
+      fetchRecipeDiets()
     })
   })
 }
@@ -91,5 +110,4 @@ const renderDietsDropdown = diets => {
 
 fetchRecipes()
 fetchDiets()
-
 })

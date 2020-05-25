@@ -1,0 +1,41 @@
+const fetchDiets = () => {
+  fetch(dietsUrl)
+    .then(resp => resp.json())
+    .then(renderDietsDropdown)
+}
+
+const renderDietsDropdown = diets => {
+  
+  diets.forEach(diet => {
+    const newOption = document.createElement('option')
+    newOption.textContent = diet.name
+    select.add(newOption)
+
+    //add event listener for selections in dropdown menu
+    select.addEventListener('change', (e) => {
+      const fetchRecipeDiets = () => {
+        fetch(recipedietsUrl)
+          .then(resp => resp.json())
+          .then(clickedRecipeDiets)
+      }
+      const clickedRecipeDiets = recipeDiets => {
+        if (e.target.value === diet.name) {
+          recipeDiets.forEach(recipeDiet => {
+            console.log(recipeDiet.diet.filter)
+          })
+          
+        //   recipeDiets.forEach(recipeDiet => {
+        //   })
+          //show recipes with target diet
+        // console.log(recipeDiets.e.target.value)
+
+
+        // recipeDiv.innerHTML = `${diet.name}`
+
+
+      }
+      }
+      fetchRecipeDiets()
+    })
+  })
+}
