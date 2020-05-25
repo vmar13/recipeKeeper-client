@@ -1,9 +1,10 @@
 //hold for js code
 const recipesUrl = "http://localhost:3000/api/v1/recipes"
 const dietsUrl = 'http://localhost:3000/api/v1/diets'
-const recipeDietsUrl = ''
+const recipeDietsUrl = 'http://localhost:3000/api/v1/recipediets'
 const cardContainer = document.querySelector(".container")
 const select = document.querySelector('#diet-names')
+const newOption = document.createElement('option')
 // import anime from 'animejs';
 
 
@@ -64,28 +65,46 @@ const populateRecipeCards = recipes => {
 }
  
 //create select option for each diet
-const fetchDiets = () => {
-  fetch(dietsUrl)
-    .then(resp => resp.json())
-    .then(renderDietsDropdown)
-}
+  const fetchDiets = () => {
+    fetch(dietsUrl)
+      .then(resp => resp.json())
+      .then(renderDietsDropdown)
+  }
 
-const renderDietsDropdown = diets => {
-  
+  const renderDietsDropdown = diets => {
 
-  diets.forEach(diet => {
-    const newOption = document.createElement('option')
-    newOption.textContent = diet.name
-    select.add(newOption)
+    diets.forEach(diet => {
+      newOption.textContent = diet.name
+      select.add(newOption)
 
-    //add event listener for selections in dropdown menu
-    select.addEventListener('change', (e) => {
-      if(e.target.value === diet.name) {
-        console.log(e.target.value)
-      }
+      //add event listener for selections in dropdown menu
+      select.addEventListener('change', (e) => {
+        const fetchRecipeDiets = () => {
+          fetch(recipedietsUrl)
+            .then(resp => resp.json())
+            .then(clickedRecipeDiets)
+        }
+        const clickedRecipeDiets = recipeDiets => {
+          if (e.target.value === diet.name) {
+            recipeDiets.forEach(recipeDiet => {
+              console.log(recipeDiet.diet.filter)
+            })
+
+            //   recipeDiets.forEach(recipeDiet => {
+            //   })
+            //show recipes with target diet
+            // console.log(recipeDiets.e.target.value)
+
+
+            // recipeDiv.innerHTML = `${diet.name}`
+
+
+          }
+        }
+        fetchRecipeDiets()
+      })
     })
-  })
-}
+  }
 
 
 
