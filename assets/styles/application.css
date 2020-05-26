@@ -3,7 +3,9 @@
 body
 {
     background: #cfd8dc;
+   
 }
+
 
 .container
 {
@@ -18,19 +20,39 @@ body
     border-radius: 10px;
 
     perspective: 1400px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+
+    /* position: relative;
+    top: 38%;
+    right: 29%; */
+
+    float: center;
+    margin: 2px;
+    width: 95px;
+    height: 95px;
 }
 
 .card
 {
     position: relative;
 
-    height:400px;
+    height:600px;
 
     border-radius: 10px;
 
-    width: 600px;
+    width: 400px;
     transform-style: preserve-3d;
+
+    /* border: 2px solid #e7e7e7;
+ 
+    border-radius: 4px;
+ 
+    padding: .5rem; */
 }
+
 
 .front,
 .back
@@ -41,8 +63,8 @@ body
 
     display: flex;
 
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 600px;
 
     border-radius: 10px;
 
@@ -80,3 +102,11 @@ body
     font-size: 15px;
     font-family: 'Didot', serif;
   }
+
+  .auto-grid {
+    --autogrid-min-size: 16rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(let(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+    }
+  

@@ -4,9 +4,10 @@ const dietsUrl = 'http://localhost:3000/api/v1/diets'
 const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
 const cardContainer = document.querySelector(".container")
 const select = document.querySelector('#diet-names')
-const recipeDiv = document.createElement('div')
-const frontCard = document.createElement('div')
-const backCard = document.createElement('div')
+const card = document.querySelectorAll('.card')
+// const recipeDiv = document.createElement('div')
+// const frontCard = document.createElement('div')
+// const backCard = document.createElement('div')
 // import anime from 'animejs';
 
 
@@ -20,10 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const populateRecipeCards = recipes => {
     recipes.forEach(recipe => {
 
+      const recipeDiv = document.createElement('div')
+      const frontCard = document.createElement('div')
+      const backCard = document.createElement('div')
+
       //create cards for each recipe
       recipeDiv.className = "card"
-      cardContainer.appendChild(recipeDiv)
-
+      recipeDiv.dataset.id = `${recipe.id}`
+     
       //const frontCard = document.createElement('div')
       frontCard.className = "front"
       recipeDiv.appendChild(frontCard)
@@ -33,18 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
       recipeDiv.appendChild(backCard)
 
       frontCard.innerHTML = `
-      <img src= ${recipe.image_url} width="500" height="500">`
+      <img src= ${recipe.image_url} width="400" height="600"> <br>`
 
       backCard.innerHTML = `
       ${recipe.ingredients}
-      `
+      <br>`
+      
+      cardContainer.appendChild(recipeDiv)
+
   //anime.js
       //const card = document.querySelector(".container");
       let playing = false;
   
-      document.addEventListener('click',function() {
-        console.log(event)
-        if(playing)
+      document.addEventListener('click',function(e) {
+        if(e.target.dataset.id === recipe.id) {
+          
+          if(playing)
         return;
           playing = true;
           anime({
@@ -57,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             playing = false;
             }
           });
+        } 
       });
 //end anime
     })
@@ -87,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             testest.forEach(test => {
              // if (recipeDiv.innerHTML = ""){
               recipeDiv.innerHTML = 
-                `<img src= ${test.recipe.image_url} width="400" height="500">`
+                `<img src= ${test.recipe.image_url} width="400" height="600">`
               cardContainer.appendChild(frontCard)
             
               //else {
