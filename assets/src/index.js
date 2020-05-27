@@ -62,8 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
           if(playing)
           return;
           playing = true;
-          console.log(e)
-          console.log(card.id)
           anime({
             targets: card, 
             scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
