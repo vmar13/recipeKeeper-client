@@ -46,26 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
       recipeDiv.appendChild(backCard)
 
       frontCard.innerHTML = `
-      <img src= ${recipe.image_url}> <br>`
+      <img src= ${recipe.image_url}>`
 
       backCard.innerHTML = `
       ${recipe.ingredients}
-      <br>`
+      `
       
       cardContainer.appendChild(recipeDiv)
 
   //anime.js
-      //const card = document.querySelector(".container");
+      const card = document.querySelectorAll(".card").forEach(card => {
       let playing = false;
-  
-      document.addEventListener('click',function(e) {
-        if(e.target.dataset.id === recipe.id) {
+      card.addEventListener('click',function(e) {
           
           if(playing)
-        return;
+          return;
           playing = true;
+          console.log(e)
+          console.log(card.id)
           anime({
-            targets: recipeDiv,
+            targets: card, 
             scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
             rotateY: {value: '+=180', delay: 200},
             easing: 'easeInOutSine',
@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
             playing = false;
             }
           });
-        } 
       });
+    });
 //end anime
     })
   }
