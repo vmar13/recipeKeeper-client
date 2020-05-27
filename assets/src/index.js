@@ -5,7 +5,7 @@ const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
 const cardContainer = document.querySelector(".container")
 const select = document.querySelector('#diet-names')
 const card = document.querySelectorAll('.card')
-// const recipeDiv = document.createElement('div')
+const recipeDiv = document.createElement('div')
 // const frontCard = document.createElement('div')
 // const backCard = document.createElement('div')
 // import anime from 'animejs';
@@ -18,7 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(populateRecipeCards)
   }
 
-  const populateRecipeCards = recipes => {
+  const cleanIng = () => {
+    const newIng = recipes.ingredients.split(', ')
+    return newIng
+  }
+
+  const populateRecipeCards = (recipes) => {
+    cardContainer.innerHTML = ""
+ 
+    //change recipes to new variable named above
     recipes.forEach(recipe => {
 
       const recipeDiv = document.createElement('div')
@@ -38,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       recipeDiv.appendChild(backCard)
 
       frontCard.innerHTML = `
-      <img src= ${recipe.image_url} width="400" height="600"> <br>`
+      <img src= ${recipe.image_url}> <br>`
 
       backCard.innerHTML = `
       ${recipe.ingredients}
@@ -81,17 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
     diets.forEach(diet => {
       const newOption = document.createElement('option')
       newOption.textContent = diet.name
+      newOption.value = diet.id
       select.appendChild(newOption)
+    })
+  }
 
       //add event listener for selections in dropdown menu
       select.addEventListener('change', (e) => {
-        const fetchRecipeDiets = () => {
-          fetch(recipedietsUrl)
-            .then(resp => resp.json())
-            .then(clickedRecipeDiets)
-        }
+       let id = e.target.value
+       console.log(e.target.value)
+        
+          fetch(`${dietsUrl}/${id}`)
+          .then(resp => resp.json())
+          .then(data => {
+            populateRecipeCards(data.recipes)
+          })
+          })
+          // }
+          //const switchOnDiet = (e) => {
+          //switch (e.target.value) {
+          //case 'vegetarian':
+           // console.log('veg
         const clickedRecipeDiets = recipeDiets => {
-          if (e.target.value === diet.name) {
+            const recipeDiv = document.querySelector('card')
+            const frontCard = document.querySelector('front')
+            const backCard = document.querySelector('back')
             const testest = recipeDiets.filter(recipeDiet => recipeDiet.diet.name === e.target.value)
             console.log(testest)
             testest.forEach(test => {
@@ -99,19 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
               recipeDiv.innerHTML = 
                 `<img src= ${test.recipe.image_url} width="400" height="600">`
               cardContainer.appendChild(frontCard)
-            
-              //else {
             })
-          }
-          fetchRecipeDiets()
         }
-       
-      })
+        fetchRecipes()
+        fetchDiets()
     })
-  }
-    
-    fetchRecipes()
-    fetchDiets()
-  })
+  //})
 
 
