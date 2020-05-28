@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
       backCard.innerHTML = `
       ${recipe.ingredients}
       `
-      
       cardContainer.appendChild(recipeDiv)
 
   //anime.js
