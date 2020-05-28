@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const recipeDiv = document.createElement('div')
       const frontCard = document.createElement('div')
       const backCard = document.createElement('div')
+      const delDiv = document.createElement("div")
 
       //create cards for each recipe
       recipeDiv.className = "card"
@@ -50,7 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       backCard.innerHTML = `
       ${recipe.ingredients}
+      <button class="delete">&times;</button >
       `
+      delDiv.innerHTML = 
+
       cardContainer.appendChild(recipeDiv)
 
   //anime.js
@@ -120,6 +124,24 @@ document.addEventListener('DOMContentLoaded', () => {
               cardContainer.appendChild(frontCard)
             })
         }
+        document.addEventListener('click', (e) => {
+          if (e.target.className === "delete") {
+            console.log(e.target.className)
+            const cardID = e.target.parentNode.parentNode.dataset.id
+            fetch(`${recipesUrl}/${cardID}`, {
+              method: 'DELETE',
+              // headers: {
+              //   'Content-Type': 'application/json',
+              //   'Accept': 'application/json'
+              // }
+            })
+              .then(resp => {
+                e.target.parentNode.parentNode.remove()
+              })
+          }
+        })
+
+
         fetchRecipes()
         fetchDiets()
     })
