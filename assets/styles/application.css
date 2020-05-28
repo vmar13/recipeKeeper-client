@@ -2,8 +2,16 @@
 /*card styling*/
 body
 {
-    background: #cfd8dc;
+    background: #e3e5e68a;
+   margin: 0;
 }
+
+.logo img
+{
+    width: 100%;
+
+}
+
 
 .container
 {
@@ -11,53 +19,72 @@ body
     font-size: 20px;
     font-weight: regular;
 
-    width: 400px;
-    height: 550px;
-    margin: 80px auto;
-
-    border-radius: 10px;
+    width: 100vw;
 
     perspective: 1400px;
+
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 .card
 {
     position: relative;
 
-    height: 100%;
-
     border-radius: 10px;
-
-    width: 100%;
+    box-shadow: 2px 2px 4px rgba(167, 87, 156, 0.568);
+    width: 500px;
+    height: 350px;
     transform-style: preserve-3d;
+    margin: 20px;
+    transition: all 0.2s ease;
+
 }
 
-.frontCard,
-.backCard
+.card:hover
+
 {
-    display: flex;
-
-    width: 100%;
-    height: 100%;
-
-    border-radius: 10px;
-
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
+    box-shadow: 4px 4px 8px rgba(167, 87, 156, 0.568);
 }
 
-.frontCard
-{
-    color: #ffff;
-    background: #2196f3;
-}
 
-.backCard
+.front,
+.back
 {
     position: absolute;
     top: 0;
     left: 0;
+
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    font-size: medium;
+
+    border-radius: 10px;
+
+    
+    align-items: center;
+    backface-visibility: hidden;
+}
+
+.front
+{
+    overflow: hidden;
+    color: #ffff;
+    background: #2196f3;
+    
+}
+.front img 
+{
+    width: 100%
+}
+.back
+{
 
     transform: rotateY(180deg);
 
@@ -66,7 +93,7 @@ body
 }
 
 .dropdown {
-    background-color: rgb(49, 109, 179);
+    background-color: rgb(184, 104, 160);
     color: white;
     padding: 1%;
     padding-top: 0px;
@@ -75,6 +102,8 @@ body
   }
   
   .dropdown>select, input {
-    font-size: 20px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    font-family: 'Didot', serif;
   }
+
+
