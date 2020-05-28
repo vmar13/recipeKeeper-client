@@ -2,8 +2,14 @@
 /*card styling*/
 body
 {
-    background: #cfd8dc;
+    background: #e3e5e68a;
    margin: 0;
+}
+
+.logo img
+{
+    width: 100%;
+
 }
 
 
@@ -57,10 +63,11 @@ body
 
     width: 100%;
     height: 100%;
+    font-size: medium;
 
     border-radius: 10px;
 
-    justify-content: center;
+    
     align-items: center;
     backface-visibility: hidden;
 }
@@ -99,10 +106,4 @@ body
     font-family: 'Didot', serif;
   }
 
-  .auto-grid {
-    --autogrid-min-size: 16rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(let(--auto-grid-min-size), 1fr));
-    grid-gap: 1rem;
-    }
-  
+
