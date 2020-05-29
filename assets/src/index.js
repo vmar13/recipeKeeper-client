@@ -18,15 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(populateRecipeCards)
   }
 
-  const cleanIng = () => {
-    const newIng = recipes.ingredients.split(', ')
-    return newIng
-  }
 
   const populateRecipeCards = (recipes) => {
     cardContainer.innerHTML = ""
- 
-    //change recipes to new variable named above
+
     recipes.forEach(recipe => {
 
       const recipeDiv = document.createElement('div')
@@ -48,12 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
       frontCard.innerHTML = `
       <img src= ${recipe.image_url}>`
 
-      backCard.innerHTML = `
-      ${recipe.ingredients}
-      `
-      cardContainer.appendChild(recipeDiv)
+      const ingredientSplitFunc = () => {
+       // let recIngredients = ""
+       let recIngredients = recipe.ingredients
+        const stringToArray = recIngredients.split(',')
+        const ul = document.createElement('ul')
+        stringToArray.forEach(word => {
+          const ingredientLi = document.createElement('li')
+          ul.appendChild(ingredientLi)
+          ul.className = 'ul'
+          ingredientLi.className = 'li'
+          backCard.appendChild(ul)
+          ingredientLi.innerHTML += `
+          ${word}
+          `
+        })
+      }
 
-  //anime.js
+      ingredientSplitFunc()
+      cardContainer.appendChild(recipeDiv)
+ 
+      //anime.js
       const card = document.querySelectorAll(".card").forEach(card => {
       let playing = false;
       card.addEventListener('click',function(e) {
@@ -70,10 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
             complete: function(anim){
             playing = false;
             }
-          });
-      });
-    });
-//end anime
+          })
+      })
+    })
+    //end anime
     })
   }
   //create select option for each diet
@@ -100,13 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
           .then(resp => resp.json())
           .then(data => {
             populateRecipeCards(data.recipes)
+            })
           })
-          })
-          // }
-          //const switchOnDiet = (e) => {
-          //switch (e.target.value) {
-          //case 'vegetarian':
-           // console.log('veg
+  
         const clickedRecipeDiets = recipeDiets => {
             const recipeDiv = document.querySelector('card')
             const frontCard = document.querySelector('front')

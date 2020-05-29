@@ -60,14 +60,12 @@ body
     left: 0;
 
     display: flex;
-
     width: 100%;
     height: 100%;
     font-size: medium;
 
     border-radius: 10px;
 
-    
     align-items: center;
     backface-visibility: hidden;
 }
@@ -87,9 +85,10 @@ body
 {
 
     transform: rotateY(180deg);
-
     color: #c1abad;
     background: #fff;
+    overflow: scroll;
+
 }
 
 .dropdown {
@@ -106,4 +105,9 @@ body
     font-family: 'Didot', serif;
   }
 
+  .ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
 
