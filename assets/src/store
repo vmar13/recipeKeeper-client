@@ -113,5 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchRecipes()
     fetchDiets()
   })
+<<<<<<< HEAD
+}
+=======
 
 
+>>>>>>> JohnZ
