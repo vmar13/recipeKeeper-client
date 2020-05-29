@@ -2,20 +2,23 @@
 /*card styling*/
 body
 {
-    background: #e3e5e68a;
+    background: #eddedb;
    margin: 0;
 }
 
 .logo img
 {
-    width: 100%;
+    width: 100vw;
+    height: 33vh;
+    object-fit: cover;
+    overflow: hidden;
 
 }
 
 
 .container
 {
-    font-family: 'Didot', serif;
+    font-family: 'Didot';
     font-size: 20px;
     font-weight: regular;
 
@@ -36,9 +39,9 @@ body
     position: relative;
 
     border-radius: 10px;
-    box-shadow: 2px 2px 4px rgba(167, 87, 156, 0.568);
-    width: 500px;
-    height: 350px;
+    box-shadow: 2px 2px 4px rgba(43, 41, 42, 0.568);
+    width: 400px;
+    height: 250px;
     transform-style: preserve-3d;
     margin: 20px;
     transition: all 0.2s ease;
@@ -48,7 +51,7 @@ body
 .card:hover
 
 {
-    box-shadow: 4px 4px 8px rgba(167, 87, 156, 0.568);
+    box-shadow: 4px 4px 8px #bf978f;
 }
 
 
@@ -93,9 +96,9 @@ body
 }
 
 .dropdown {
-    background-color: rgb(184, 104, 160);
+    background-color: #bf978f;
     color: white;
-    padding: 1%;
+    padding: 0px;
     padding-top: 0px;
     border: none;
     text-align: center;
@@ -104,6 +107,7 @@ body
   .dropdown>select, input {
     font-size: 15px;
     font-family: 'Didot', serif;
+
   }
 
   .ul {
