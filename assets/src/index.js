@@ -1,13 +1,10 @@
 //hold for js code
 const recipesUrl = "http://localhost:3000/api/v1/recipes"
 const dietsUrl = 'http://localhost:3000/api/v1/diets'
-const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
+const recipeDietsUrl = 'http://localhost:3000/api/v1/recipediets'
 const cardContainer = document.querySelector(".container")
 const select = document.querySelector('#diet-names')
-const card = document.querySelectorAll('.card')
-const recipeDiv = document.createElement('div')
-// const frontCard = document.createElement('div')
-// const backCard = document.createElement('div')
+const newOption = document.createElement('option')
 // import anime from 'animejs';
 
 
@@ -27,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const recipeDiv = document.createElement('div')
       const frontCard = document.createElement('div')
       const backCard = document.createElement('div')
+      const delDiv = document.createElement("div")
 
       //create cards for each recipe
       recipeDiv.className = "card"
@@ -126,6 +124,24 @@ document.addEventListener('DOMContentLoaded', () => {
               cardContainer.appendChild(frontCard)
             })
         }
+        document.addEventListener('click', (e) => {
+          if (e.target.className === "delete") {
+            console.log(e.target.className)
+            const cardID = e.target.parentNode.parentNode.dataset.id
+            fetch(`${recipesUrl}/${cardID}`, {
+              method: 'DELETE',
+              // headers: {
+              //   'Content-Type': 'application/json',
+              //   'Accept': 'application/json'
+              // }
+            })
+              .then(resp => {
+                e.target.parentNode.parentNode.remove()
+              })
+          }
+        })
+
+
         fetchRecipes()
         fetchDiets()
     })
