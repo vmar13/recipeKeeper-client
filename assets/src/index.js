@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         ul.innerHTML += `
       <h3>Instructions</h3>
-      ${recipe.instructions}`
+      ${recipe.instructions}
+      <button class="delete">Delete</button >`
       }
 
       ingredientSplitFunc()
@@ -186,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', (e) => {
       if (e.target.className === "delete") {
-        const cardID = e.target.parentNode.parentNode.dataset.id
+        const cardID = e.target.parentNode.parentNode.parentNode.dataset.id
         fetch(`${recipesUrl}/${cardID}`, {
           method: 'DELETE',
           // headers: {
@@ -195,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // }
         })
           .then(resp => {
-            e.target.parentNode.parentNode.remove()
+            e.target.parentNode.parentNode.parentNode.remove()
           })
       }
     })
