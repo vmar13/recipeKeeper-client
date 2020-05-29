@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ul.innerHTML += `
       <h3>Instructions</h3>
       ${recipe.instructions}
-      <button class="delete">Delete</button>`
+      <button class="delete">Delete</button >`
       }
 
       ingredientSplitFunc()
@@ -160,10 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
+    console.log(e.target)
     const recipeName = form.name.value
     const recipeIng = form.ingredients.value
     const recipeInstuct = form.instructions.value
     const recipeImage = form.image_url.value
+
 
     fetch(recipesUrl, {
       method: 'POST',
@@ -180,10 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
     .then(resp => resp.json())
-    .then(fetchRecipes)
-
-    modal.classList.toggle("closed");
-    modalOverlay.classList.toggle("closed");
+    .then(console.log)
   })
 
     document.addEventListener('click', (e) => {
