@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${word}
           `
         })
+        ul.innerHTML += `${recipe.instructions}`
       }
 
       ingredientSplitFunc()
