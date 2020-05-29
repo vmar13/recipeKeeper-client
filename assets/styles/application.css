@@ -90,6 +90,8 @@ body
     color: #c1abad;
     background: #fff;
     overflow: scroll;
+    display: inline-block;
+
 }
 
 .dropdown {
