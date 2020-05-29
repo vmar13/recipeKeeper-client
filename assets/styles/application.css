@@ -114,7 +114,7 @@ body
 
   .modal {
     /* This way it could be display flex or grid or whatever also. */
-    display: flex;
+    display: none;
     
     /* Probably need media queries here */
     width: 600px;
@@ -138,6 +138,8 @@ body
     
     background: white;
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+
   }
 
   .model.open {
@@ -149,7 +151,7 @@ body
   }
 
   .closed {
-    display: none;
+    display: inline;
   }
   
   .modal-overlay {
@@ -209,14 +211,17 @@ body
   .open-button {
     border: 0;
     position: relative;
-    top: 50%;
-    left: 50%;
+
+    top: 22px;
+    right: 440px;
     transform: translate(-50%, -50%);
     background: rgba(200, 194, 206, 0.692);
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 21px;
+    
+    
   }
   
   .form-group {
@@ -232,5 +237,9 @@ input, textarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.delete {
+  width: 90px;
 }
 
