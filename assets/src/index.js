@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ul = document.createElement('ul')//
         ul.innerHTML = `
         <h3>${recipe.name}</h3>
-        <h3>Ingredients</h3>
+        <h4>Ingredients</h4>
         `
         stringToArray.forEach(word => {
           const ingredientLi = document.createElement('li')
@@ -70,8 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
           `
         })
         ul.innerHTML += `
-      <h3>Instructions</h3>
+      <h4>Instructions</h4>
       ${recipe.instructions}
+      <br></br>
       <button class="delete">Delete</button>`
       }
 
