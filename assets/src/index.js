@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       backCard.innerHTML = `
       ${recipe.ingredients}
+      ${recipe.instructions}
       <button class="delete">&times;</button >
       `
       delDiv.innerHTML = 

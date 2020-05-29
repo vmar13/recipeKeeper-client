@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <!-- Stylesheets -->
+     <link rel="stylesheet" type="text/css" href="styles/application.css">
+    
+   <!-- Google Font Import -->
+
+    <!-- JS Files -->
+    
+    <title>Recipe Keeper</title>
+
+</head>  
+<script src='node_modules/animejs/lib/anime.min.js'></script> 
+
+<body>
+    <div class="logo">
+        <img src= 'recipeKeeper (1).png'>
+    </div>
+    <div class = "dropdown">
+        <select id ="diet-names">
+            <option value=''>Select by Diet</option>
+            <!-- show diets here -->
+        </select>
+    </div>
+    
+    <div class="container"></div>
+
+    
+
+    
+</body>
+    <script src='src/index.js'></script>
+</html>
