@@ -54,7 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
        // let recIngredients = ""
        let recIngredients = recipe.ingredients
         const stringToArray = recIngredients.split(',')
-        const ul = document.createElement('ul')
+        const ul = document.createElement('ul')//
+        ul.innerHTML = `
+        <h3>${recipe.name}</h3>
+        <h3>Ingredients</h3>
+        `
         stringToArray.forEach(word => {
           const ingredientLi = document.createElement('li')
           ul.appendChild(ingredientLi)
@@ -65,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
           ${word}
           `
         })
-        ul.innerHTML += `${recipe.instructions}`
+        ul.innerHTML += `
+      <h3>Instructions</h3>
+      ${recipe.instructions}`
       }
 
       ingredientSplitFunc()
