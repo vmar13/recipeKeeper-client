@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  
   const recipesUrl = "http://localhost:3000/api/v1/recipes"
   const dietsUrl = 'http://localhost:3000/api/v1/diets'
   const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
@@ -22,20 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(populateRecipeCards)
   }
 
-  const cleanIng = () => {
-    const newIng = recipes.ingredients.split(', ')
-    return newIng
-  }
 
   const populateRecipeCards = (recipes) => {
     cardContainer.innerHTML = ""
- 
-    //change recipes to new variable named above
+
     recipes.forEach(recipe => {
 
       const recipeDiv = document.createElement('div')
       const frontCard = document.createElement('div')
       const backCard = document.createElement('div')
+      const delDiv = document.createElement("div")
 
       //create cards for each recipe
       recipeDiv.className = "card"
@@ -53,14 +50,27 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src= ${recipe.image_url}>
       `
 
-      backCard.innerHTML = `
-      ${recipe.ingredients}
-      ${recipe.instructions}
-      <button class="delete">&times;</button >
-      `
-      cardContainer.appendChild(recipeDiv)
+      const ingredientSplitFunc = () => {
+       // let recIngredients = ""
+       let recIngredients = recipe.ingredients
+        const stringToArray = recIngredients.split(',')
+        const ul = document.createElement('ul')
+        stringToArray.forEach(word => {
+          const ingredientLi = document.createElement('li')
+          ul.appendChild(ingredientLi)
+          ul.className = 'ul'
+          ingredientLi.className = 'li'
+          backCard.appendChild(ul)
+          ingredientLi.innerHTML += `
+          ${word}
+          `
+        })
+      }
 
-  //anime.js
+      ingredientSplitFunc()
+      cardContainer.appendChild(recipeDiv)
+ 
+      //anime.js
       const card = document.querySelectorAll(".card").forEach(card => {
       let playing = false;
       card.addEventListener('click',function(e) {
@@ -77,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
             complete: function(anim){
             playing = false;
             }
-          });
-      });
-    });
-//end anime
+          })
+      })
+    })
+    //end anime
     })
   }
   //create select option for each diet
