@@ -79,7 +79,6 @@ body
 {
     overflow: hidden;
     color: #ffff;
-    background: #2196f3;
     
 }
 .front img 
@@ -104,13 +103,25 @@ body
     padding-top: 0px;
     border: none;
     text-align: center;
+    position: relative;
+    height: 35px;
+
+ 
   }
   
   .dropdown>select, input {
     font-size: 15px;
     font-family: 'Didot', serif;
-
+    
   }
+
+
+.diet-names {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
   .modal {
     /* This way it could be display flex or grid or whatever also. */
@@ -210,16 +221,17 @@ body
   
   .open-button {
     border: 0;
-    position: relative;
+    position: absolute;
+    font-family: 'Didot';
 
-    top: 22px;
-    right: 440px;
-    transform: translate(-50%, -50%);
-    background: rgba(200, 194, 206, 0.692);
+    top: 50%;
+    left: 15%;
+    transform: translate(0%, -50%);
+    background: #bf978f00;
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
-    font-size: 21px;
+    font-size: 20px;
     
     
   }
@@ -241,5 +253,6 @@ input, textarea {
 
 .delete {
   width: 90px;
+  justify-content: center;
 }
 
