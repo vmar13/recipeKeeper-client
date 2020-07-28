@@ -1,19 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  const recipesUrl = "http://localhost:3000/api/v1/recipes"
+  const recipesUrl = 'http://localhost:3000/api/v1/recipes'
   const dietsUrl = 'http://localhost:3000/api/v1/diets'
   const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
-  const cardContainer = document.querySelector(".container")
+  const cardContainer = document.querySelector('.container')
   const select = document.querySelector('#diet-names')
-  const card = document.querySelectorAll('.card')
+  // const cards = document.querySelectorAll('.card')
   const recipeDiv = document.createElement('div')
-  // const frontCard = document.createElement('div')
-  // const backCard = document.createElement('div')
-  // import anime from 'animejs';
-  const modal = document.querySelector("#modal");
-  const modalOverlay = document.querySelector("#modal-overlay");
-  const closeButton = document.querySelector("#close-button");
-  const openButton = document.querySelector("#open-button");
+  const modal = document.querySelector('#modal');
+  const modalOverlay = document.querySelector('#modal-overlay');
+  const closeButton = document.querySelector('#close-button');
+  const openButton = document.querySelector('#open-button');
   const form = document.querySelector('#recipe-form')
 
 
@@ -23,64 +20,64 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(populateRecipeCards)
   }
 
-
   const populateRecipeCards = (recipes) => {
-    cardContainer.innerHTML = ""
+    cardContainer.innerHTML = ''
 
     recipes.forEach(recipe => {
 
       const recipeDiv = document.createElement('div')
       const frontCard = document.createElement('div')
       const backCard = document.createElement('div')
-      const delDiv = document.createElement("div")
+      // const delDiv = document.createElement('div')
 
       //create cards for each recipe
-      recipeDiv.className = "card"
+      recipeDiv.className = 'card'
       recipeDiv.dataset.id = `${recipe.id}`
      
-      //const frontCard = document.createElement('div')
-      frontCard.className = "front"
+      //create front of card
+      frontCard.className = 'front'
+      frontCard.innerHTML = `<img src= ${recipe.image_url}>`
       recipeDiv.appendChild(frontCard)
 
-      //const backCard = document.createElement('div')
-      backCard.className = "back"
+      //create back of card
+      backCard.className = 'back'
       recipeDiv.appendChild(backCard)
 
-      frontCard.innerHTML = `
-      <img src= ${recipe.image_url}>
-      `
-
+      //break up string of ingredients into individual bullet points on back of card
       const ingredientSplitFunc = () => {
-       // let recIngredients = ""
        let recIngredients = recipe.ingredients
-        const stringToArray = recIngredients.split(',')
-        const ul = document.createElement('ul')//
+        const stringToArrIngs = recIngredients.split(',')
+        const ul = document.createElement('ul')
         ul.innerHTML = `
         <h3>${recipe.name}</h3>
         <h4>Ingredients</h4>
         `
-        stringToArray.forEach(word => {
+        stringToArrIngs.forEach(singleIng => {
           const ingredientLi = document.createElement('li')
           ul.appendChild(ingredientLi)
           ul.className = 'ul'
           ingredientLi.className = 'li'
           backCard.appendChild(ul)
           ingredientLi.innerHTML += `
-          ${word}
+          ${singleIng}
           `
         })
+
         ul.innerHTML += `
-      <h4>Instructions</h4>
-      ${recipe.instructions}
-      <br></br>
-      <button class="delete">Delete</button>`
+        <h4>Instructions</h4>
+        ${recipe.instructions}
+        <br></br>
+        <button class='delete'>Delete</button>`
       }
 
       ingredientSplitFunc()
       cardContainer.appendChild(recipeDiv)
- 
-      //anime.js
-      const card = document.querySelectorAll(".card").forEach(card => {
+      cardFlip()
+    })
+  }
+
+  const cardFlip = () => {
+    const cards = document.querySelectorAll('.card').forEach(card => {
       let playing = false;
       card.addEventListener('click',function(e) {
           
@@ -99,15 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
           })
       })
     })
-    //end anime
-    })
   }
-  //create select option for each diet
+
+  //fetch all diets and create select option for each one
   const fetchDiets = () => {
     fetch(dietsUrl)
       .then(resp => resp.json())
       .then(renderDietsDropdown)
   }
+
   const renderDietsDropdown = diets => {
     diets.forEach(diet => {
       const newOption = document.createElement('option')
@@ -120,14 +117,15 @@ document.addEventListener('DOMContentLoaded', () => {
   //add event listener for selections in dropdown menu
   select.addEventListener('change', (e) => {
     let id = e.target.value
-    console.log(e.target.value)
+    // console.log(e.target.value)
     
       fetch(`${dietsUrl}/${id}`)
       .then(resp => resp.json())
-      .then(data => {
-        populateRecipeCards(data.recipes)
+      .then(dietData => {
+        populateRecipeCards(dietData.recipes)
       })
   })
+
       // }
       //const switchOnDiet = (e) => {
       //switch (e.target.value) {
@@ -140,24 +138,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const testest = recipeDiets.filter(recipeDiet => recipeDiet.diet.name === e.target.value)
         console.log(testest)
         testest.forEach(test => {
-          // if (recipeDiv.innerHTML = ""){
           recipeDiv.innerHTML = 
-            `<img src= ${test.recipe.image_url} width="400" height="600">`
+            `<img src= ${test.recipe.image_url} width='400' height='600'>`
           cardContainer.appendChild(frontCard)
         })
     }
 
     
-  openButton.addEventListener("click", function(e) {
-    modal.classList.toggle("closed");
-    modalOverlay.classList.toggle("closed");
-  });
+  openButton.addEventListener('click', function(e) {
+    modal.classList.toggle('closed');
+    modalOverlay.classList.toggle('closed');
+  })
 
-  closeButton.addEventListener("click", function(e) {
-    modal.classList.toggle("closed");
-    modalOverlay.classList.toggle("closed");
-  });
+  closeButton.addEventListener('click', function(e) {
+    modal.classList.toggle('closed');
+    modalOverlay.classList.toggle('closed');
+  })
 
+  //create recipe
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -177,25 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredients: recipeIng,
         instructions: recipeInstuct,
         image_url: recipeImage
-        // likes: 0
       })
     })
     .then(resp => resp.json())
     .then(fetchRecipes)
 
-    modal.classList.toggle("closed");
-    modalOverlay.classList.toggle("closed");
+    modal.classList.toggle('closed');
+    modalOverlay.classList.toggle('closed');
   })
 
     document.addEventListener('click', (e) => {
-      if (e.target.className === "delete") {
+      if (e.target.className === 'delete') {
         const cardID = e.target.parentNode.parentNode.parentNode.dataset.id
         fetch(`${recipesUrl}/${cardID}`, {
           method: 'DELETE',
-          // headers: {
-          //   'Content-Type': 'application/json',
-          //   'Accept': 'application/json'
-          // }
         })
           .then(resp => {
             e.target.parentNode.parentNode.parentNode.remove()
