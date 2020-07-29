@@ -117,6 +117,17 @@ body
     
   }
 
+.diet-btn {
+  position: relative;
+  background-color: #bf978f;
+  color: white;
+  /* border: none; */
+  border-radius: 5px;
+  height: 34px;
+  padding-left: .5%;
+  padding-right: .5%;
+  margin-right: 3px;
+}
 
 .diet-names {
     position: absolute;
