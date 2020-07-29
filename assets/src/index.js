@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const recipeDiv = document.createElement('div')
       const frontCard = document.createElement('div')
       const backCard = document.createElement('div')
-      // const delDiv = document.createElement('div')
 
       //create cards for each recipe
       recipeDiv.className = 'card'
@@ -73,8 +72,65 @@ document.addEventListener('DOMContentLoaded', () => {
       ingredientSplitFunc()
       cardContainer.appendChild(recipeDiv)
       cardFlip()
+      
+      const createRecipeDiet = (recipeId) => {
+        recipeId = recipeDiv.dataset.id
+        if(recipeId > 15) {
+          // fetch all diets and for each one create buttons with diet id
+            fetch(dietsUrl)
+              .then(resp => resp.json())
+              .then(renderDietButtons)
+          }
+      }
+        
+          const renderDietButtons = diets => {
+            diets.forEach(diet => {
+              const dietBtn = document.createElement('button')
+                dietBtn.textContent = diet.name
+                dietBtn.value = diet.id
+                recipeDiv.insertAdjacentElement('afterend', dietBtn)
+
+                dietBtn.addEventListener('click', e => {
+                  fetch(recipedietsUrl, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      recipe_id: recipeDiv.dataset.id,
+                      diet_id: e.target.value
+                    })
+                  })
+                })
+            })  
+          }
+          
+          // const vegetarianBtn = document.createElement('button')
+          // vegetarianBtn.textContent = 'Vegetarian'
+          // const paleoBtn = document.createElement('button')
+          // paleoBtn.textContent = 'Paleo'
+          // const dairyFreeBtn = document.createElement('button')
+          // dairyFreeBtn.textContent = 'Dairy-Free'
+          // recipeDiv.insertAdjacentElement('afterend', glutenFreeBtn)
+          // recipeDiv.insertAdjacentElement('afterend', vegetarianBtn)
+          // recipeDiv.insertAdjacentElement('afterend', paleoBtn)
+          // recipeDiv.insertAdjacentElement('afterend', dairyFreeBtn)
+
+        
+        // }
+      
+
+      //assign diet_id value in dataset id, so you can use 
+      //e.target.dataset.id in diet_id value
+      //figure out how to grab the recipe_id
+
+      createRecipeDiet()
+      // fetchDietsForBtns()
     })
+ 
   }
+
 
   const cardFlip = () => {
     const cards = document.querySelectorAll('.card').forEach(card => {
@@ -97,6 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
   }
+
+
 
   //fetch all diets and create select option for each one
   const fetchDiets = () => {
@@ -126,24 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
       })
   })
 
-      // }
-      //const switchOnDiet = (e) => {
-      //switch (e.target.value) {
-      //case 'vegetarian':
-        // console.log('veg
-    const clickedRecipeDiets = recipeDiets => {
-        const recipeDiv = document.querySelector('card')
-        const frontCard = document.querySelector('front')
-        const backCard = document.querySelector('back')
-        const testest = recipeDiets.filter(recipeDiet => recipeDiet.diet.name === e.target.value)
-        console.log(testest)
-        testest.forEach(test => {
-          recipeDiv.innerHTML = 
-            `<img src= ${test.recipe.image_url} width='400' height='600'>`
-          cardContainer.appendChild(frontCard)
-        })
-    }
-
+    
+    // const clickedRecipeDiets = recipeDiets => {
+    //     const recipeDiv = document.querySelector('card')
+    //     const frontCard = document.querySelector('front')
+    //     const backCard = document.querySelector('back')
+    //     const testest = recipeDiets.filter(recipeDiet => recipeDiet.diet.name === e.target.value)
+    //     console.log(testest)
+    //     testest.forEach(test => {
+    //       recipeDiv.innerHTML = 
+    //         `<img src= ${test.recipe.image_url} width='400' height='600'>`
+    //       cardContainer.appendChild(frontCard)
+    //     })
+    // }
     
   openButton.addEventListener('click', function(e) {
     modal.classList.toggle('closed');
@@ -155,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalOverlay.classList.toggle('closed');
   })
 
-  //create recipe
+  //create a recipe
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -198,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchRecipes()
   fetchDiets()
+
 })
 
 
