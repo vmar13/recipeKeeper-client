@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const dietBtn = document.createElement('button')
                 dietBtn.textContent = diet.name
                 dietBtn.value = diet.id
+                dietBtn.className = 'diet-btn'
                 recipeDiv.insertAdjacentElement('afterend', dietBtn)
 
                 dietBtn.addEventListener('click', e => {
