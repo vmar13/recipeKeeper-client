@@ -39,7 +39,6 @@ body
 .card
 {
     position: relative;
-
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(43, 41, 42, 0.568);
     width: 400px;
@@ -47,7 +46,6 @@ body
     transform-style: preserve-3d;
     margin: 20px;
     transition: all 0.2s ease;
-
 }
 
 .card:hover
@@ -75,24 +73,21 @@ body
     backface-visibility: hidden;
 }
 
-.front
-{
-    overflow: hidden;
-    color: #ffff;
-    
+.front {
+  overflow: hidden;
+  color: #ffff;   
 }
-.front img 
-{
-    width: 100%
-}
-.back
-{
 
-    transform: rotateY(180deg);
-    color: #c1abad;
-    background: #fff;
-    overflow: scroll;
-    display: inline-block;
+.front img {
+  width: 100%
+}
+
+.back{
+  transform: rotateY(180deg);
+  color: #c1abad;
+  background: #fff;
+  overflow: scroll;
+  display: inline-block;
 
 }
 
@@ -126,7 +121,9 @@ body
   height: 34px;
   padding-left: .5%;
   padding-right: .5%;
+  margin-top: 20%;
   margin-right: 3px;
+  display: block;
 }
 
 .diet-names {

@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 dietBtn.value = diet.id
                 dietBtn.className = 'diet-btn'
                 recipeDiv.insertAdjacentElement('afterend', dietBtn)
+                // const dietBtnContainer = document.createElement('div')
+                // dietBtnContainer.className = 'diet-btn-container'
+                // recipeDiv.insertAdjacentElement('afterend', dietBtnContainer)
+                // dietBtnContainer.appendChild(dietBtn)
 
                 dietBtn.addEventListener('click', e => {
                   fetch(recipedietsUrl, {
@@ -174,17 +178,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //add event listener for selections in dropdown menu
-  select.addEventListener('change', (e) => {
-    let id = e.target.value
-    // console.log(e.target.value)
+  // select.addEventListener('change', (e) => {
+  //   let id = e.target.value
+  //   // console.log(e.target.value)
     
+  //     fetch(`${dietsUrl}/${id}`)
+  //     .then(resp => resp.json())
+  //     .then(dietData => {
+  //       populateRecipeCards(dietData.recipes)
+  //     })
+  // })
+
+  select.addEventListener('change', (e) => {
+    // let id = e.target.value
+    // console.log(e.target.value)
+
+    if(e.target.value === ''){
+      return (
+        fetchRecipes()
+      )
+    } else {
+      let id = e.target.value
       fetch(`${dietsUrl}/${id}`)
       .then(resp => resp.json())
       .then(dietData => {
         populateRecipeCards(dietData.recipes)
       })
+    }  
   })
-
     
     // const clickedRecipeDiets = recipeDiets => {
     //     const recipeDiv = document.querySelector('card')
