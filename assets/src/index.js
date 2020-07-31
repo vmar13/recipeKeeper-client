@@ -89,21 +89,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
         
           const renderDietButtons = diets => {
+            const dietBtnsCont = document.createElement('div')
+            dietBtnsCont.className = 'diet-btns-container'
+            const doneTaggingBtn = document.createElement('button')
+            doneTaggingBtn.className = 'diet-done-tagging-btn'
+            doneTaggingBtn.textContent = 'Done Tagging'
+
             diets.forEach(diet => {
               const dietBtn = document.createElement('button')
-                dietBtn.textContent = diet.name
-                dietBtn.value = diet.id
-                dietBtn.className = 'diet-btn'
-                recipeDiv.insertAdjacentElement('afterend', dietBtn)
-                const dietBtnsGroup = document.getElementsByClassName('diet-btn')
-                const dietBtnsCont = document.createElement('div')
-                dietBtnsCont.className = 'diet-btns-container'
-                dietBtnsCont.append(dietBtnsGroup)
-                // const dietBtnContainer = document.createElement('div')
-                // dietBtnContainer.className = 'diet-btn-container'
-                // recipeDiv.insertAdjacentElement('afterend', dietBtnContainer)
-                // dietBtnContainer.appendChild(dietBtn)
+              dietBtn.textContent = diet.name
+              dietBtn.value = diet.id
+              dietBtn.className = 'diet-btn'
 
+                // recipeDiv.insertAdjacentElement('afterend', dietBtnsCont)
+                recipeDiv.append(dietBtnsCont)
+
+                dietBtnsCont.appendChild(dietBtn)
+                dietBtnsCont.appendChild(doneTaggingBtn)
+                // dietBtnsCont.innerHTML = `<p>Is this recipe any of the following?</p>`
+                
                 dietBtn.addEventListener('click', e => {
                   fetch(recipedietsUrl, {
                     method: 'POST',
