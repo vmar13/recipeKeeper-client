@@ -1,79 +1,58 @@
-/* hold for css styling */
-/*card styling*/
-body
-{
-    background: #eddedb;
-   margin: 0;
-}
-
-.btn btn-primary {
-  background: rgb(109, 74, 74);
-
-}
-
-.logo img
-{
-    width: 100vw;
-    height: 33vh;
-    object-fit: cover;
-    overflow: hidden;
-
+body {
+  background: #eddedb;
+  margin: 0;
 }
 
 
-.container
-{
-    font-family: 'Didot';
-    font-size: 20px;
-    font-weight: regular;
+.logo img {
+  width: 100vw;
+  height: 33vh;
+  object-fit: cover;
+  overflow: hidden;
+}
 
-    width: 100vw;
 
-    perspective: 1400px;
-
-    display: flex;
-
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+.container {
+  font-family: 'Didot';
+  font-size: 20px;
+  font-weight: regular;
+  width: 100vw;
+  perspective: 1400px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 
 }
 
-.card
-{
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px rgba(43, 41, 42, 0.568);
-    width: 400px;
-    height: 250px;
-    transform-style: preserve-3d;
-    margin: 20px;
-    transition: all 0.2s ease;
+.card {
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(43, 41, 42, 0.568);
+  width: 400px;
+  height: 250px;
+  transform-style: preserve-3d;
+  margin: 20px;
+  transition: all 0.2s ease;
 }
 
-.card:hover
-
-{
-    box-shadow: 4px 4px 8px #bf978f;
+.card:hover {
+  box-shadow: 4px 4px 8px #bf978f;
 }
 
 
 .front,
-.back
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    display: flex;
-    width: 100%;
-    height: 100%;
-    font-size: medium;
-
-    border-radius: 10px;
-
-    align-items: center;
-    backface-visibility: hidden;
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: medium;
+  border-radius: 10px;
+  align-items: center;
+  backface-visibility: hidden;
 }
 
 .front {
@@ -85,38 +64,18 @@ body
   width: 100%
 }
 
-.back{
+.back {
   transform: rotateY(180deg);
   color: #c1abad;
   background: #fff;
   overflow: scroll;
   display: inline-block;
-
 }
-
-.dropdown {
-    background-color: #bf978f;
-    color: white;
-    padding: 0px;
-    padding-top: 0px;
-    border: none;
-    text-align: center;
-    position: relative;
-    height: 35px;
-
- 
-  }
-  
-  .dropdown>select, input {
-    font-size: 20px;
-    font-family: 'Didot', serif;
-    color: white; 
-    border: none;
-    
-  }
 
 .diet-btn {
   position: relative;
+  /* top: 48%;
+  left: 60%; */
   background-color: #bf978f;
   color: white;
   /* border: none; */
@@ -126,150 +85,171 @@ body
   padding-right: .5%;
   margin-top: 20%;
   margin-right: 3px;
-  display: block;
+  display: inline-block;
 }
 
 .diet-names {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    font-size: 15px;
-    font-family: 'Didot', serif;
-    background-color: #d4bab0
-    
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: 'Didot', serif;
+  background-color: #d4bab0  
 }
 
-  .modal {
-    /* This way it could be display flex or grid or whatever also. */
-    display: none;
-    
-    /* Probably need media queries here */
-    width: 600px;
-    max-width: 100%;
-    height: 400px;
-    max-height: 100%;
-    position: fixed;
-    z-index: 100;
-    left: 50%;
-    top: 50%;
-    
-    /* Use this for centering if unknown width/height */
-    transform: translate(-50%, -50%);
-    
-    /* If known, negative margins are probably better (less chance of blurry text). */
-    /* margin: -200px 0 0 -200px; */
-    
-    background: white;
-    box-shadow: 0 0 70px 10px rgba(0, 0, 0, 0.9);
-    border-radius: 10px;
-
-  }
-
-  .model.open {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: scroll;
-      /* background: #c1abad; */
-      background: #c49b9d;
-
-      color: white;
-      border-radius: 5px;
-  }
-
-  .closed {
-    display: inline;
+.dropdown {
+  background-color: #bf978f;
+  color: white;
+  padding: 0px;
+  padding-top: 0px;
+  border: none;
+  text-align: center;
+  position: relative;
+  height: 34px;
+  top: 0%;
   }
   
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    
-    background: rgba(0, 0, 0, 0.6);
+.dropdown>select, input {
+  font-size: 20px;
+  font-family: 'Didot', serif;
+  color: white; 
+  border: none;
   }
-  .modal-guts {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    padding: 20px 50px 20px 20px;
-    /* background: #c1abad; */
-    background: #c49b9d;
 
-    border-radius: 5px;
 
-  }
+/* ONLY MODAL BELOW */
+
+.modal {
+  /* This way it could be display flex or grid or whatever also. */
+  display: none;
   
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
- 
-  ul {
-    margin: 10px 0 10px 30px;
-  }
-  li, p {
-    margin: 0 0 10px 0;
-  }
-  h1 {
-    margin: 0 0 20px 0;
-  }
+  /* Probably need media queries here */
+  width: 600px;
+  max-width: 100%;
+  height: 400px;
+  max-height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
   
-  .modal .close-button {
-    position: absolute;
-    
-    /* don't need to go crazy with z-index here, just sits over .modal-guts */
-    z-index: 1;
-    top: 10px;
-    
-    /* needs to look OK with or without scrollbar */
-    right: 20px;
-    
-    border: 0;
-    border-radius: 5px;
-    background: rgb(109, 74, 74);
-    color: white;
-    padding: 5px 10px;
-    font-size: 1.3rem;
-  }
+  /* Use this for centering if unknown width/height */
+  transform: translate(-50%, -50%);
   
-  .open-button {
-    border: 0;
-    position: absolute;
-    font-family: 'Didot';
-    top: 50%;
-    left: 15%;
-    transform: translate(0%, -50%);
-    background: #bf978f00;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 20px;  
-  }
+  /* If known, negative margins are probably better (less chance of blurry text). */
+  /* margin: -200px 0 0 -200px; */
   
-  .form-group {
-    color: white;
-    font-size: 20px;
+  background: white;
+  box-shadow: 0 0 70px 10px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+
+}
+
+.model.open {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: scroll;
+  /* background: #c1abad; */
+  background: #c49b9d;
+  color: white;
+  border-radius: 5px;
+}
+
+.closed {
+  display: inline;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-guts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 20px 50px 20px 20px;
+  /* background: #c1abad; */
+  background: #c49b9d;
+  border-radius: 5px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 10px 0 10px 30px;
+}
+
+li, p {
+  margin: 0 0 10px 0;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+}
+
+.modal .close-button {
+  position: absolute;
+  
+  /* don't need to go crazy with z-index here, just sits over .modal-guts */
+  z-index: 1;
+  top: 10px;
+  
+  /* needs to look OK with or without scrollbar */
+  right: 20px;
+  border: 0;
+  border-radius: 5px;
+  background: rgb(109, 74, 74);
+  color: white;
+  padding: 5px 10px;
+  font-size: 1.3rem;
+}
+
+.open-button {
+  border: 0;
+  position: absolute;
+  font-family: 'Didot';
+  top: 50%;
+  left: 15%;
+  transform: translate(0%, -50%);
+  background: #bf978f00;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 20px;  
+}
+
+.form-group {
+  color: white;
+  font-size: 20px;
 }
 
 input, textarea {
-    color: #503b3c;
-    border-radius: 5px;
-    padding: 3px 7px;
-    font-size: 18px;
-  }
+  color: #503b3c;
+  border-radius: 5px;
+  padding: 3px 7px;
+  font-size: 18px;
+  width: 75%;
+}
 
 ::placeholder {
-  color: rgb(194, 191, 191);
+  color: rgb(173, 169, 169);
 }
 
 .modal .modal-submit-btn {
@@ -283,9 +263,9 @@ input, textarea {
 }
 
 .ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .delete {
