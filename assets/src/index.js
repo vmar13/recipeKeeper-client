@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
         
           const renderDietButtons = diets => {
+            const dietBtnsAndRecCont = document.createElement('div')
+            dietBtnsAndRecCont.className = 'dietBtns-and-recipe-container'
             const dietBtnsCont = document.createElement('div')
             dietBtnsCont.className = 'diet-btns-container'
             const doneTaggingBtn = document.createElement('button')
@@ -99,14 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
               const dietBtn = document.createElement('button')
               dietBtn.textContent = diet.name
               dietBtn.value = diet.id
-              dietBtn.className = 'diet-btn'
+              dietBtn.className = 'diet-btn' 
 
-                // recipeDiv.insertAdjacentElement('afterend', dietBtnsCont)
-                recipeDiv.append(dietBtnsCont)
+              cardContainer.append(dietBtnsAndRecCont)
+              dietBtnsAndRecCont.append(recipeDiv, dietBtnsCont)
+                recipeDiv.insertAdjacentElement('afterend', dietBtnsCont)
+                // recipeDiv.append(dietBtnsCont)
 
                 dietBtnsCont.appendChild(dietBtn)
                 dietBtnsCont.appendChild(doneTaggingBtn)
-                // dietBtnsCont.innerHTML = `<p>Is this recipe any of the following?</p>`
                 
                 dietBtn.addEventListener('click', e => {
                   fetch(recipedietsUrl, {
@@ -121,7 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                   })
                 })
-            })  
+            }) 
+            
+            doneTaggingBtn.addEventListener('click', e => {
+              dietBtnsCont.style.opacity = '0'
+              doneTaggingBtn.style.opacity = '0'
+            })
           }
 
       createRecipeDiet()
@@ -139,6 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const cardFlip = () => {
     const cards = document.querySelectorAll('.card').forEach(card => {
+
+      // if(element !== 'button') {
+      // }
       let playing = false;
       card.addEventListener('click',function(e) {
           
