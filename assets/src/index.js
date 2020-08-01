@@ -127,12 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }) 
             
             doneTaggingBtn.addEventListener('click', e => {
-              dietBtnsCont.style.opacity = '0'
-              doneTaggingBtn.style.opacity = '0'
+              dietBtnsCont.remove() 
+              doneTaggingBtn.remove()
+              // createRecipeDiet = function(){}
             })
           }
 
-      createRecipeDiet()
+        // let count = 0
+        // count === 1 ? createRecipeDiet() : null 
+        // count++
+        createRecipeDiet()
     })
  
   }
@@ -187,18 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
       select.appendChild(newOption)
     })
   }
-
-  //add event listener for selections in dropdown menu
-  // select.addEventListener('change', (e) => {
-  //   let id = e.target.value
-  //   // console.log(e.target.value)
-    
-  //     fetch(`${dietsUrl}/${id}`)
-  //     .then(resp => resp.json())
-  //     .then(dietData => {
-  //       populateRecipeCards(dietData.recipes)
-  //     })
-  // })
 
   select.addEventListener('change', (e) => {
     // let id = e.target.value
