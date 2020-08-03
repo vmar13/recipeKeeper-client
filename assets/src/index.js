@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <h4>Instructions</h4>
         ${recipe.instructions}
         <br></br>
-        <button class='delete'>Delete</button>`
+        <button class='delete'>Delete</button>
+        <button class='view'>Full View</button>`
       }
 
       ingredientSplitFunc()
@@ -146,12 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
           }
 
-  
         createRecipeDiet()
     })
- 
   }
-
 
 
   const cardFlip = () => {
