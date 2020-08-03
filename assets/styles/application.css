@@ -75,6 +75,32 @@ body {
   display: inline-block;
 }
 
+.delete {
+  margin-right: 3px;
+  margin-top: 5%;
+  position: relative;
+  display: center;
+  left: 15%;
+  color: white;
+  background: rgb(109, 74, 74);
+  border-radius: 5px;
+  font-family: 'Didot';
+  padding: 3px 
+}
+
+.view {
+  width: 27%;
+  position: relative;
+  margin-top: -7.5%;
+  display: center;
+  left: 50%;
+  color: white;
+  background: rgb(109, 74, 74);
+  border-radius: 5px;
+  font-family: 'Didot';
+  padding: 3px 
+}
+
 .diet-btn {
   background-color: #cc9b92;
   color: #4d241c;
