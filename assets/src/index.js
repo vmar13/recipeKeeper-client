@@ -127,18 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }) 
             
             doneTaggingBtn.addEventListener('click', e => {
-              dietBtnsCont.remove() 
-              doneTaggingBtn.remove()
-              // createRecipeDiet = function(){}
+              dietBtnsCont.style.display = 'none'
+              doneTaggingBtn.style.display = 'none'
+              localStorage.setItem('dietBtnsCont', 'false')
+              localStorage.setItem('doneTaggingBtn', 'false')
             })
           }
 
-        // let count = 0
-        // count === 1 ? createRecipeDiet() : null 
-        // count++
+  
         createRecipeDiet()
     })
  
+  }
+
+  window.onload = function() {
+    let d1 = localStorage.getItem('dietBtnsCont')
+    d1.style.display = 'none'
+    let d2 = localStorage.getItem('doneTaggingBtn')
+    d2.style.display = 'none'
+
+    // if(dietBtnsCont === 'false' && doneTaggingBtn === 'false') {
+    //   let d1 = document.getElementsByClassName('diet-btns-container')
+    //   d1.style.display = 'none'
+    //   let d2 = document.getElementsByClassName('diet-done-tagging-btn')
+    //   d2.style.display = 'none'
+    // }
   }
 
   // const createDietBtnsDiv = () => {
