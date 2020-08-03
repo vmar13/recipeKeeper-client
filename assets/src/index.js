@@ -80,7 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const createRecipeDiet = (recipeId) => {
         recipeId = recipeDiv.dataset.id
-        if(recipeId > 15) {
+        if(recipe.done_tagging === false) {
+          // if(recipeId > 50) {
+
           // fetch all diets and for each one create buttons with diet id
             fetch(dietsUrl)
               .then(resp => resp.json())
@@ -106,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
               cardContainer.append(dietBtnsAndRecCont)
               dietBtnsAndRecCont.append(recipeDiv, dietBtnsCont)
                 recipeDiv.insertAdjacentElement('afterend', dietBtnsCont)
-                // recipeDiv.append(dietBtnsCont)
 
                 dietBtnsCont.appendChild(dietBtn)
                 dietBtnsCont.appendChild(doneTaggingBtn)
@@ -129,8 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
             doneTaggingBtn.addEventListener('click', e => {
               dietBtnsCont.style.display = 'none'
               doneTaggingBtn.style.display = 'none'
-              localStorage.setItem('dietBtnsCont', 'false')
-              localStorage.setItem('doneTaggingBtn', 'false')
+              
+              //add PATCH request here to update done_tagging to true
+              recipeId = recipeDiv.dataset.id
+              fetch(`${recipesUrl}/${recipeId}`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                  done_tagging: true
+                })
+              })
             })
           }
 
@@ -140,27 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
   }
 
-  window.onload = function() {
-    let d1 = localStorage.getItem('dietBtnsCont')
-    d1.style.display = 'none'
-    let d2 = localStorage.getItem('doneTaggingBtn')
-    d2.style.display = 'none'
 
-    // if(dietBtnsCont === 'false' && doneTaggingBtn === 'false') {
-    //   let d1 = document.getElementsByClassName('diet-btns-container')
-    //   d1.style.display = 'none'
-    //   let d2 = document.getElementsByClassName('diet-done-tagging-btn')
-    //   d2.style.display = 'none'
-    // }
-  }
-
-  // const createDietBtnsDiv = () => {
-  //   const dietBtnsGroup = document.getElementsByClassName('diet-btn')
-  //         const dietBtnsCont = document.createElement('div')
-  //         dietBtnsCont.className = 'diet-btns-container'
-  //         dietBtnsCont.append(dietBtnsGroup)
-  //         recipeDivSelected.append(dietBtnsCont)
-  // }
 
   const cardFlip = () => {
     const cards = document.querySelectorAll('.card').forEach(card => {
@@ -254,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeIng = form.ingredients.value
     const recipeInstuct = form.instructions.value
     const recipeImage = form.image_url.value
+    const doneTagging = form.done_tagging.value
 
     fetch(recipesUrl, {
       method: 'POST',
@@ -265,7 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
         name: recipeName,
         ingredients: recipeIng,
         instructions: recipeInstuct,
-        image_url: recipeImage
+        image_url: recipeImage,
+        done_tagging: doneTagging 
       })
     })
     .then(resp => resp.json())
