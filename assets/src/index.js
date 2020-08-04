@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const select = document.querySelector('#diet-names')
   // const cards = document.querySelectorAll('.card')
   const recipeDivSelected = document.querySelector('.card')
-  const modal = document.querySelector('#modal');
-  const modalOverlay = document.querySelector('#modal-overlay');
-  const closeButton = document.querySelector('#close-button');
-  const openButton = document.querySelector('#open-button');
+  const modal = document.querySelector('#modal')
+  const recipeModal = document.querySelector('#recipe-modal')
+  // const modalOverlay = document.querySelector('#modal-overlay');
+  const closeButton = document.querySelector('#close-button')
+  const recipeCloseBtn = document.querySelector('#recipe-close-button')
+  const openButton = document.querySelector('#open-button')
   const form = document.querySelector('#recipe-form')
 
 
@@ -64,8 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ul.innerHTML += `
         <h4>Instructions</h4>
-        ${recipe.instructions}
-        <br></br>
+        <p>${recipe.instructions}</p>
         <button class='delete'>Delete</button>
         <button class='view'>Full View</button>`
       }
@@ -228,12 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
   openButton.addEventListener('click', function(e) {
     modal.classList.toggle('closed');
-    modalOverlay.classList.toggle('closed');
+    // modalOverlay.classList.toggle('closed');
   })
 
   closeButton.addEventListener('click', function(e) {
     modal.classList.toggle('closed');
-    modalOverlay.classList.toggle('closed');
+    // modalOverlay.classList.toggle('closed');
   })
 
   //create a recipe
@@ -264,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(fetchRecipes)
 
     modal.classList.toggle('closed');
-    modalOverlay.classList.toggle('closed');
+    // modalOverlay.classList.toggle('closed');
   })
 
     document.addEventListener('click', (e) => {
@@ -279,9 +280,43 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
 
+    document.addEventListener('click', e => {
+      if (e.target.className === 'view') {
+        const recipeTitle = e.target.parentNode.children[0]
+        const ingTitle = e.target.parentNode.children[1]
+        const ul = document.createElement('ul')
+        const ingredientsHTMLcoll = e.target.parentNode.getElementsByTagName('li')
+        const ingArr = Array.from(ingredientsHTMLcoll)
+        ingArr.forEach(ing => {
+          const ingLi = document.createElement('li')
+          ul.appendChild(ingLi)
+          ingLi.innerHTML += `${ing.textContent}`
+        })
+
+        const instructTitle = document.createElement('h4')
+        instructTitle.textContent = 'Instructions'
+        const instructions = e.target.previousElementSibling.previousElementSibling.textContent
+
+        const recipeModGuts = document.querySelector('.recipe-modal-guts')
+        recipeModal.classList.toggle('closed')
+        recipeModGuts.appendChild(recipeTitle)
+        recipeModGuts.appendChild(ingTitle)
+        recipeModGuts.appendChild(ul)
+        recipeModGuts.appendChild(instructTitle)
+        recipeModGuts.append(instructions)
+
+    // modalOverlay.classList.toggle('closed')
+      }
+    })
+
+    recipeCloseBtn.addEventListener('click', function(e) {
+      recipeModal.classList.toggle('closed');
+      // modalOverlay.classList.toggle('closed');
+    })
+  
+
   fetchRecipes()
   fetchDiets()
-  // createDietBtnsDiv()
 
 })
 
