@@ -180,9 +180,26 @@ body {
   border: none;
   }
 
-/* .recipe-and-btns-container {
-  flex-direction: column;
-} */
+
+/* ONLY BACK CARD BELOW */
+
+.recipe-name-backCard {
+  margin-top: 4%;
+}
+
+.ingred-title-backCard {
+  margin-top: 3%;
+}
+
+.li-backCard {
+  margin-left: 10%;
+  margin-right: 8%;
+}
+
+.instructions-backCard {
+  margin-right: 8%;
+}
+
 
 /* ONLY MODAL BELOW */
 
@@ -352,8 +369,8 @@ input, textarea {
   /* Probably need media queries here */
   width: 600px;
   max-width: 100%;
-  height: 400px;
-  max-height: 100%;
+  height: 600px;
+  max-height: 120%;
   position: fixed;
   z-index: 100;
   left: 50%;
@@ -409,7 +426,16 @@ input, textarea {
   width: 100%;
   height: 100%;
   overflow: auto;
-  padding: 20px 50px 20px 20px;
+  padding: 55px 50px 40px 50px;
   /* background: #c49b9d; */
   border-radius: 5px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+h4 {
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
