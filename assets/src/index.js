@@ -50,14 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const stringToArrIngs = recIngredients.split(',')
         const ul = document.createElement('ul')
         ul.innerHTML = `
-        <h3>${recipe.name}</h3>
-        <h4>Ingredients</h4>
+        <h3 class='recipe-name-backCard'>${recipe.name}</h3>
+        <h4 class='ingred-title-backCard'>Ingredients</h4>
         `
         stringToArrIngs.forEach(singleIng => {
           const ingredientLi = document.createElement('li')
           ul.appendChild(ingredientLi)
           ul.className = 'ul'
-          ingredientLi.className = 'li'
+          ingredientLi.className = 'li-backCard'
           backCard.appendChild(ul)
           ingredientLi.innerHTML += `
           ${singleIng}
@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         ul.innerHTML += `
-        <h4>Instructions</h4>
-        <p>${recipe.instructions}</p>
+        <h4 class='instruct-title-backCard'>Instructions</h4>
+        <p class='instructions-backCard'>${recipe.instructions}</p>
         <button class='delete'>Delete</button>
         <button class='view'>Full View</button>`
       }
