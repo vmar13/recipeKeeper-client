@@ -170,7 +170,8 @@ body {
   text-align: center;
   position: relative;
   height: 34px;
-  top: 0%;
+  /* top: 20%;
+  left: 60%; */
   }
   
 .dropdown>select, input {
@@ -235,7 +236,8 @@ body {
   justify-content: center;
   overflow: scroll;
   /* background: #c1abad; */
-  background: #c49b9d;
+  /* background: #c49b9d; */
+  background: rgb(233, 203, 203);
   color: white;
   border-radius: 5px;
 }
@@ -264,7 +266,8 @@ body {
   overflow: auto;
   padding: 20px 50px 20px 20px;
   /* background: #c1abad; */
-  background: #c49b9d;
+  /* background: #c49b9d; */
+  background: rgb(233, 203, 203);
   border-radius: 5px;
 }
 
@@ -382,7 +385,8 @@ input, textarea {
   /* If known, negative margins are probably better (less chance of blurry text). */
   /* margin: -200px 0 0 -200px; */
   
-  background: white;
+  background: rgb(250, 225, 225);
+  color: rgb(59, 31, 31) ;
   box-shadow: 0 0 70px 10px rgba(0, 0, 0, 0.9);
   border-radius: 10px;
 
