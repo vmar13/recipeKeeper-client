@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const recipeCloseBtn = document.querySelector('#recipe-close-button')
   const openButton = document.querySelector('#open-button')
   const form = document.querySelector('#recipe-form')
-
+  const recipeModGuts = document.querySelector('.recipe-modal-guts')
 
   const fetchRecipes = () => {
     fetch(recipesUrl)
@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', (e) => {
       if (e.target.className === 'view') {
+        // console.log(e.target.parentNode.children)
         const recipeTitle = e.target.parentNode.children[0]
         const ingTitle = e.target.parentNode.children[1]
         const ul = document.createElement('ul')
@@ -262,9 +263,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const instructTitle = document.createElement('h4')
         instructTitle.textContent = 'Instructions'
-        const instructions = e.target.previousElementSibling.previousElementSibling.textContent
+        const instructions = document.createElement('p')
+        instructions.textContent = e.target.previousElementSibling.previousElementSibling.textContent
 
-        const recipeModGuts = document.querySelector('.recipe-modal-guts')
         recipeModal.classList.toggle('closed')
         recipeModGuts.appendChild(recipeTitle)
         recipeModGuts.appendChild(ingTitle)
@@ -275,6 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     recipeCloseBtn.addEventListener('click', () => {
+      //Clear all elements within recipeModGuts, so "Full View" doesn't duplicate every recipe view
+      recipeModGuts.querySelectorAll('*').forEach(node => node.remove())
       recipeModal.classList.toggle('closed');
     })
   
@@ -283,3 +286,4 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchDiets()
 
 })
+
