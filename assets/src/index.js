@@ -153,8 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
-
   const cardFlip = () => {
     const cards = document.querySelectorAll('.card').forEach(card => {
 
