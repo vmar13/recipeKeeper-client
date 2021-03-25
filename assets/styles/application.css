@@ -265,8 +265,6 @@ body {
   height: 100%;
   overflow: auto;
   padding: 20px 50px 20px 20px;
-  /* background: #c1abad; */
-  /* background: #c49b9d; */
   background: rgb(233, 203, 203);
   border-radius: 5px;
 }
@@ -335,6 +333,7 @@ input, textarea {
 
 ::placeholder {
   color: rgb(173, 169, 169);
+  
 }
 
 .modal .modal-submit-btn {
