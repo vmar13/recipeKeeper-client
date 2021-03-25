@@ -5,11 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const recipedietsUrl = 'http://localhost:3000/api/v1/recipe_diets'
   const cardContainer = document.querySelector('.container')
   const select = document.querySelector('#diet-names')
-  // const cards = document.querySelectorAll('.card')
   const recipeDivSelected = document.querySelector('.card')
   const modal = document.querySelector('#modal')
   const recipeModal = document.querySelector('#recipe-modal')
-  // const modalOverlay = document.querySelector('#modal-overlay');
   const closeButton = document.querySelector('#close-button')
   const recipeCloseBtn = document.querySelector('#recipe-close-button')
   const openButton = document.querySelector('#open-button')
@@ -74,81 +72,74 @@ document.addEventListener('DOMContentLoaded', () => {
       ingredientSplitFunc()
       cardContainer.appendChild(recipeDiv)
       cardFlip()
-
-      // if(recipeDiv.children !== frontCard || backCard) {
-      //   const dietBtnCont = document.createElement('div')
-      //   dietBtnCont.className = 'diet-btn-container'
-      // }
       
       const createRecipeDiet = (recipeId) => {
         recipeId = recipeDiv.dataset.id
-        if(recipe.done_tagging === false) {
-          // if(recipeId > 50) {
-
+        if (recipe.done_tagging === false) {
           // fetch all diets and for each one create buttons with diet id
-            fetch(dietsUrl)
-              .then(resp => resp.json())
-              .then(renderDietButtons)
-          }
+          fetch(dietsUrl)
+            .then(resp => resp.json())
+            .then(renderDietButtons)
+        }
       }
         
-          const renderDietButtons = diets => {
-            const dietBtnsAndRecCont = document.createElement('div')
-            dietBtnsAndRecCont.className = 'dietBtns-and-recipe-container'
-            const dietBtnsCont = document.createElement('div')
-            dietBtnsCont.className = 'diet-btns-container'
-            const doneTaggingBtn = document.createElement('button')
-            doneTaggingBtn.className = 'diet-done-tagging-btn'
-            doneTaggingBtn.textContent = 'Done Tagging'
+      const renderDietButtons = diets => {
+        const dietBtnsAndRecCont = document.createElement('div')
+        dietBtnsAndRecCont.className = 'dietBtns-and-recipe-container'
+        const dietBtnsCont = document.createElement('div')
+        dietBtnsCont.className = 'diet-btns-container'
+        const doneTaggingBtn = document.createElement('button')
+        doneTaggingBtn.className = 'diet-done-tagging-btn'
+        doneTaggingBtn.textContent = 'Done Tagging'
 
-            diets.forEach(diet => {
-              const dietBtn = document.createElement('button')
-              dietBtn.textContent = diet.name
-              dietBtn.value = diet.id
-              dietBtn.className = 'diet-btn' 
+        diets.forEach(diet => {
+          const dietBtn = document.createElement('button')
+          dietBtn.textContent = diet.name
+          dietBtn.value = diet.id
+          dietBtn.className = 'diet-btn' 
 
-              cardContainer.append(dietBtnsAndRecCont)
-              dietBtnsAndRecCont.append(recipeDiv, dietBtnsCont)
-                recipeDiv.insertAdjacentElement('afterend', dietBtnsCont)
+          cardContainer.append(dietBtnsAndRecCont)
+          dietBtnsAndRecCont.append(recipeDiv, dietBtnsCont)
+            recipeDiv.insertAdjacentElement('afterend', dietBtnsCont)
 
-                dietBtnsCont.appendChild(dietBtn)
-                dietBtnsCont.appendChild(doneTaggingBtn)
-                
-                dietBtn.addEventListener('click', e => {
-                  fetch(recipedietsUrl, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                      recipe_id: recipeDiv.dataset.id,
-                      diet_id: e.target.value
-                    })
-                  })
-                })
-            }) 
+            dietBtnsCont.appendChild(dietBtn)
+            dietBtnsCont.appendChild(doneTaggingBtn)
             
-            doneTaggingBtn.addEventListener('click', e => {
-              dietBtnsCont.style.display = 'none'
-              doneTaggingBtn.style.display = 'none'
-              
-              //add PATCH request here to update done_tagging to true
-              recipeId = recipeDiv.dataset.id
-              fetch(`${recipesUrl}/${recipeId}`, {
-                method: 'PATCH',
+            dietBtn.addEventListener('click', e => {
+              fetch(recipedietsUrl, {
+                method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                  done_tagging: true
+                  recipe_id: recipeDiv.dataset.id,
+                  diet_id: e.target.value
                 })
               })
             })
-          }
+        }) 
+        
+        doneTaggingBtn.addEventListener('click', e => {
+          dietBtnsCont.style.display = 'none'
+          doneTaggingBtn.style.display = 'none'
+          
+          //add PATCH request here to update done_tagging to true
+          recipeId = recipeDiv.dataset.id
+          fetch(`${recipesUrl}/${recipeId}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              done_tagging: true
+            })
+          })
+        })
+      }
 
-        createRecipeDiet()
+      createRecipeDiet()
     })
   }
 
@@ -156,11 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardFlip = () => {
     const cards = document.querySelectorAll('.card').forEach(card => {
 
-      // if(element !== 'button') {
-      // }
       let playing = false;
       card.addEventListener('click',function(e) {
-          
           if(playing)
           return;
           playing = true;
@@ -177,8 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
   }
-
-
 
   //fetch all diets and create select option for each one
   const fetchDiets = () => {
@@ -197,9 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   select.addEventListener('change', (e) => {
-    // let id = e.target.value
-    // console.log(e.target.value)
-
     if(e.target.value === ''){
       return (
         fetchRecipes()
@@ -214,27 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }  
   })
     
-    // const clickedRecipeDiets = recipeDiets => {
-    //     const recipeDiv = document.querySelector('card')
-    //     const frontCard = document.querySelector('front')
-    //     const backCard = document.querySelector('back')
-    //     const testest = recipeDiets.filter(recipeDiet => recipeDiet.diet.name === e.target.value)
-    //     console.log(testest)
-    //     testest.forEach(test => {
-    //       recipeDiv.innerHTML = 
-    //         `<img src= ${test.recipe.image_url} width='400' height='600'>`
-    //       cardContainer.appendChild(frontCard)
-    //     })
-    // }
-    
-  openButton.addEventListener('click', function(e) {
+  openButton.addEventListener('click', (e) => {
     modal.classList.toggle('closed');
-    // modalOverlay.classList.toggle('closed');
   })
 
-  closeButton.addEventListener('click', function(e) {
+  closeButton.addEventListener('click', (e) => {
     modal.classList.toggle('closed');
-    // modalOverlay.classList.toggle('closed');
   })
 
   //create a recipe
@@ -265,7 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(fetchRecipes)
 
     modal.classList.toggle('closed');
-    // modalOverlay.classList.toggle('closed');
   })
 
     document.addEventListener('click', (e) => {
@@ -280,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
 
-    document.addEventListener('click', e => {
+    document.addEventListener('click', (e) => {
       if (e.target.className === 'view') {
         const recipeTitle = e.target.parentNode.children[0]
         const ingTitle = e.target.parentNode.children[1]
@@ -304,14 +271,11 @@ document.addEventListener('DOMContentLoaded', () => {
         recipeModGuts.appendChild(ul)
         recipeModGuts.appendChild(instructTitle)
         recipeModGuts.append(instructions)
-
-    // modalOverlay.classList.toggle('closed')
       }
     })
 
-    recipeCloseBtn.addEventListener('click', function(e) {
+    recipeCloseBtn.addEventListener('click', () => {
       recipeModal.classList.toggle('closed');
-      // modalOverlay.classList.toggle('closed');
     })
   
 
@@ -319,5 +283,3 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchDiets()
 
 })
-
-
