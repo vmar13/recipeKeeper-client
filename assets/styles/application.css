@@ -336,6 +336,7 @@ input, textarea {
   font-family: 'Didot';
 }
 
+/* Create-recipe modal */
 .modal .modal-submit-btn {
   color: white;
   background: rgb(109, 74, 74);
@@ -344,6 +345,11 @@ input, textarea {
   padding: 5px 10px;
   font-size: 1rem;
   font-family: 'Didot';
+}
+
+#recipe-form {
+  padding: 5px 15px;
+  margin-left: 15px;
 }
 
 .ul {
