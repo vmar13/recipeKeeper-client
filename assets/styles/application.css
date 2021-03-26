@@ -333,7 +333,7 @@ input, textarea {
 
 ::placeholder {
   color: rgb(173, 169, 169);
-  
+  font-family: 'Didot';
 }
 
 .modal .modal-submit-btn {
