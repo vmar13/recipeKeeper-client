@@ -448,3 +448,7 @@ h4 {
   margin-top: 30px;
   margin-bottom: 10px;
 }
+
+textarea {
+  border: none;
+}
