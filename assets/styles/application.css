@@ -365,9 +365,6 @@ input, textarea {
 
 
 
-
-
-
 /* RECIPE MODAL BELOW */
 
 .recipe-modal {
@@ -451,4 +448,5 @@ h4 {
 
 textarea {
   border: none;
+  font-family: 'Didot';
 }

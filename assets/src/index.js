@@ -209,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    const recipeName = form.name.value
-    const recipeIng = form.ingredients.value
-    const recipeInstuct = form.instructions.value
-    const recipeImage = form.image_url.value
-    const doneTagging = form.done_tagging.value
+    let recipeName = form.name.value
+    let recipeIng = form.ingredients.value
+    let recipeInstuct = form.instructions.value
+    let recipeImage = form.image_url.value
+    let doneTagging = form.done_tagging.value
 
     fetch(recipesUrl, {
       method: 'POST',
@@ -231,6 +231,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(resp => resp.json())
     .then(fetchRecipes)
+
+    form.name.value = ''
+    form.ingredients.value = ''
+    form.instructions.value = ''
+    form.image_url.value = ''
 
     modal.classList.toggle('closed');
   })
