@@ -333,6 +333,7 @@ input, textarea {
   padding: 5px 10px;
   font-size: 1rem;
   font-family: 'Didot';
+  height: 90%;
 }
 
 #recipe-form {
