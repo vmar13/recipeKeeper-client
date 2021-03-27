@@ -24,10 +24,6 @@ body {
   justify-content: center;
 }
 
-/* .container > .diet-btn {
-  flex: 10% 0 5%;
-} */
-
 .card {
   position: relative;
   border-radius: 10px;
@@ -37,7 +33,6 @@ body {
   transform-style: preserve-3d;
   margin: 20px;
   transition: all 0.2s ease;
-  /* display: block; */
 }
 
 .card:hover {
@@ -117,14 +112,6 @@ body {
 .diet-btn:hover {
   box-shadow: 2.5px 2.5px 4px #61524f;
 }
-
-/* .diet-btns-container {
-  position: relative;
-  width: 255px;
-  align-content: center;
-  margin-top: 52%;
-  margin-left: 5%; 
-} */
 
 .diet-btns-container {
   /* background: red; */
@@ -328,7 +315,8 @@ input, textarea {
   border-radius: 5px;
   padding: 3px 7px;
   font-size: 18px;
-  width: 75%;
+  /* width: 75%; */
+  width: 80%;
 }
 
 ::placeholder {
