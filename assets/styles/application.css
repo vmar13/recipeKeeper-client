@@ -317,8 +317,8 @@ input, textarea {
   border-radius: 5px;
   padding: 3px 7px;
   font-size: 18px;
-  /* width: 75%; */
   width: 80%;
+  resize: vertical;
 }
 
 ::placeholder {
