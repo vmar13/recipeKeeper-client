@@ -150,8 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 done_tagging: true
               })
             })
+            dietBtnCounter = 0;
+          } else {
+            let errorMsg = document.createElement('p')
+            errorMsg.textContent = 'Please select at least one diet.'
           }
-          dietBtnCounter = 0;
         })
       }
 
