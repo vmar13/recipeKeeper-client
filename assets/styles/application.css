@@ -248,7 +248,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: -15%;
   margin: auto;
   width: 130%;
   height: 150%;
@@ -281,10 +281,10 @@ h1 {
   
   /* don't need to go crazy with z-index here, just sits over .modal-guts */
   z-index: 1;
-  top: 10px;
+  top: -3.5em;
   
   /* needs to look OK with or without scrollbar */
-  right: 20px;
+  right: -3em;
   border: 0;
   border-radius: 5px;
   background: rgb(109, 74, 74);
