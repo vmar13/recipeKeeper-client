@@ -240,7 +240,6 @@ body {
   width: 100%;
   height: 100%;
   z-index: 50;
-  
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -248,10 +247,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 120%;
+  width: 130%;
+  height: 150%;
   overflow: auto;
-  padding: 20px 50px 50px 20px;
+  padding: 20px 20px 20px 20px;
   background: rgb(233, 203, 203);
   border-radius: 5px;
 }
