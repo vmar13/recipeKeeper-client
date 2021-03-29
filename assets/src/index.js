@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openButton = document.querySelector('#open-button')
   const form = document.querySelector('#recipe-form')
   const recipeModGuts = document.querySelector('.recipe-modal-guts')
+  let dietBtnCounter = 0;
 
   const fetchRecipes = () => {
     fetch(recipesUrl)
@@ -119,6 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
                   diet_id: e.target.value
                 })
               })
+              .then(resp => {
+                console.log('success!')
+              })
+              dietBtnCounter++
+              console.log(dietBtnCounter)
             })
         }) 
         
