@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
             dietBtnsCont.appendChild(dietBtn)
             dietBtnsCont.appendChild(doneTaggingBtn)
             
+            //Clicking on any of the diet btns (Gluten-Free, Dairy-Free, etc.)
+            //will create a row on the recipe-diet join table in the DB
             dietBtn.addEventListener('click', e => {
               fetch(recipedietsUrl, {
                 method: 'POST',
@@ -120,6 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }) 
         
+        //May need to create helper function that listens for 
+        //at least 1 click on a dietBtn, and if it doesn't record
+        // >= 1 click, it triggers an error on doneTagging click
+        //that says "Please select at least one diet"
+
         doneTaggingBtn.addEventListener('click', e => {
           dietBtnsCont.style.display = 'none'
           doneTaggingBtn.style.display = 'none'

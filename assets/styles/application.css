@@ -149,16 +149,15 @@ body {
 }
 
 .dropdown {
+  position: relative;
+  height: 34px;
+  margin-top: -.3%;
   background-color: #bf978f;
   color: white;
   padding: 0px;
   padding-top: 0px;
   border: none;
   text-align: center;
-  position: relative;
-  height: 34px;
-  /* top: 20%;
-  left: 60%; */
   }
   
 .dropdown>select, input {
