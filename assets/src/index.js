@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('success!')
               })
               dietBtnCounter++
-              console.log(dietBtnCounter)
+              // console.log(dietBtnCounter)
             })
         }) 
         
@@ -134,21 +134,24 @@ document.addEventListener('DOMContentLoaded', () => {
         //that says "Please select at least one diet"
 
         doneTaggingBtn.addEventListener('click', e => {
-          dietBtnsCont.style.display = 'none'
-          doneTaggingBtn.style.display = 'none'
-          
-          //add PATCH request here to update done_tagging to true
-          recipeId = recipeDiv.dataset.id
-          fetch(`${recipesUrl}/${recipeId}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              done_tagging: true
+          if (dietBtnCounter >= 1) {
+            dietBtnsCont.style.display = 'none'
+            doneTaggingBtn.style.display = 'none'
+            
+            //add PATCH request here to update done_tagging to true
+            recipeId = recipeDiv.dataset.id
+            fetch(`${recipesUrl}/${recipeId}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                done_tagging: true
+              })
             })
-          })
+          }
+          dietBtnCounter = 0;
         })
       }
 
