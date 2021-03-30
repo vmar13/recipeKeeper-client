@@ -148,6 +148,10 @@ body {
   background-color: #d4bab0  
 }
 
+.done-tagging-error {
+  color: red;
+  font-size: 15px;
+}
 
 .dropdown {
   position: relative;
