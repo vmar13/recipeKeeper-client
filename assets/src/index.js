@@ -137,8 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //that says "Please select at least one diet"
 
         doneTaggingBtn.addEventListener('click', e => {
-          dietBtnsCont.style.display = 'none'
-          doneTaggingBtn.style.display = 'none'
           if (dietBtnCounter >= 1) {
             //PATCH request to update done_tagging to true
             recipeId = recipeDiv.dataset.id
@@ -152,12 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 done_tagging: true
               })
             })
+            dietBtnsCont.style.display = 'none'
+            doneTaggingBtn.style.display = 'none'
+            dietBtnCounter = 0;
           } else {
             let errorMsg = document.createElement('p')
             errorMsg.textContent = 'Please select at least one diet.'
+            errorMsg.className = 'done-tagging-error'
             doneTaggingBtn.insertAdjacentElement('afterend', errorMsg)
           }
-          dietBtnCounter = 0;
         })
       }
 
