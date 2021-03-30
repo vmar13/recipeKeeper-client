@@ -122,10 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
               })
               .then(resp => {
-                console.log(resp.ok)
+                // console.log(resp.ok)
+                if (resp.ok) { //if resp.ok evaluates to true (meaning fetch was successful), increment dietBtnCounter
+                  dietBtnCounter++
+                  // console.log(dietBtnCounter)
+                }
               })
-              dietBtnCounter++
-              // console.log(dietBtnCounter)
             })
         }) 
         
@@ -135,11 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
         //that says "Please select at least one diet"
 
         doneTaggingBtn.addEventListener('click', e => {
+          dietBtnsCont.style.display = 'none'
+          doneTaggingBtn.style.display = 'none'
           if (dietBtnCounter >= 1) {
-            dietBtnsCont.style.display = 'none'
-            doneTaggingBtn.style.display = 'none'
-            
-            //add PATCH request here to update done_tagging to true
+            //PATCH request to update done_tagging to true
             recipeId = recipeDiv.dataset.id
             fetch(`${recipesUrl}/${recipeId}`, {
               method: 'PATCH',
