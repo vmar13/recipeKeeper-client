@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(populateRecipeCards)
   }
 
+  // console.log(dietBtnCounter)
   const populateRecipeCards = (recipes) => {
     cardContainer.innerHTML = ''
 
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
               })
               .then(resp => {
-                console.log('success!')
+                console.log(resp.ok)
               })
               dietBtnCounter++
               // console.log(dietBtnCounter)
@@ -150,11 +151,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 done_tagging: true
               })
             })
-            dietBtnCounter = 0;
           } else {
             let errorMsg = document.createElement('p')
             errorMsg.textContent = 'Please select at least one diet.'
+            doneTaggingBtn.insertAdjacentElement('afterend', errorMsg)
           }
+          dietBtnCounter = 0;
         })
       }
 
